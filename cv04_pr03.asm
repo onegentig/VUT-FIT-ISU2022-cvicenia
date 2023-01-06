@@ -10,7 +10,6 @@
 ; `vypite` (pozície týchto dvoch polí budú odpovedať
 ; značke piva)
 
-
 section .data
     ceny    DD  25, 20, 21
     vypite  DW  2, 6, 4
