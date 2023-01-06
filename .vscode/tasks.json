@@ -1,0 +1,56 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "NASM-Compile",
+            "command": "nasm",
+            "args": [ 
+                "-felf32", 
+                "-F", "dwarf", 
+                "-g", 
+                "-i", "${workspaceFolder}",
+                "-o", "${workspaceFolder}/build/${fileBasenameNoExtension}.o",
+                "${file}" 
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "focus": true,
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "panel": "shared",                
+            }
+        },
+        {
+            "label": "GCC-build",
+            "command": "gcc",           
+            "args": [ 
+                "-m32", 
+                "-ggdb",
+                "-o", "${workspaceFolder}/build/${fileBasenameNoExtension}", 
+                "${workspaceFolder}/build/${fileBasenameNoExtension}.o" 
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOn": [ "NASM-Compile" ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": {
+                "pattern": {
+                    "regexp": "error"
+                }
+            },
+            "presentation": {
+                "focus": true,
+                "panel": "shared",
+                "reveal": "silent",
+                "revealProblems": "onProblem",
+                "close": false,
+            }
+        }
+    ]
+}
