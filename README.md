@@ -49,7 +49,7 @@ dnf -y install glibc-devel.i686 # 32-bit libraries
 dnf -y install nasm
 ```
 
-#### Arch-based (Arch btw, EndeavourOS,…)
+#### Arch-based distros (Arch btw, EndeavourOS,…)
 
 *Testované na EndeavourOS. `yay` je EndeavourOS preferovaný AUR helper, takže idem s tým, ale `pacman` na čisto by mal fungovať tak isto…i think… Verím Vám, že si poradíte.* <img alt=":bigsmile:" src="https://user-images.githubusercontent.com/84882649/211153299-46968349-9e70-4125-8646-6d8772bc3097.png" height="16px" />
 
