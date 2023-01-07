@@ -6,13 +6,13 @@
 		"body": [
 			"%include \"rw32-2022.inc\"\n",
 			"section .data",
-			"\t${1:;data}\n",
+			"    ${1:;data}\n",
 			"section .text\n",
 			"CMAIN:",
-			"\tENTER\t0, 0\n",
-			"\t${2:;body}\n",
-			"\tLEAVE",
-			"\tRET",
+			"    ENTER  0, 0\n",
+			"    ${2:;body}\n",
+			"    LEAVE",
+			"    RET\n",
 		]
 	},
 	"FUNCTION with enter-leave": {
@@ -21,10 +21,10 @@
 		"description": "Generic function template with ENTER and LEAVE",
 		"body": [
 			"FUNKCE:",
-			"\tENTER\t0, 0\n",
-			"\t${1:;body}\n",
-			"\tLEAVE",
-			"\tRET\n",
+			"    ENTER  0, 0\n",
+			"    ${1:;body}\n",
+			"    LEAVE",
+			"    RET\n",
 		],
 	},
 	"FUNCTION without enter-leave": {
@@ -33,12 +33,12 @@
 		"description": "Generic function template",
 		"body": [
 			"FUNKCE:",
-			"\tPUSH\tebp",
-			"\tMOV\t\tebp, esp\n",
-			"\t${1:;body}\n",
-			"\tMOV\t\tesp, ebp",
-			"\tPOP\t\tebp",
-			"\tRET\n",
+			"    PUSH  EBP",
+			"    MOV  EBP, ESP\n",
+			"    ${1:;body}\n",
+			"    MOV  ESP, EBP",
+			"    POP  EBP",
+			"    RET\n",
 		],
 	},
 	"IF": {
@@ -47,11 +47,10 @@
 		"description": "Incomplete IF statement",
 		"body": [
 			"${1:;CMP/TEST}",
-			"JN${2:cc}\t.false",
-			";(.true:)",
-			"\t${3:;true-statement}",
+			"JN${2:cc}  .false",
+			"    ${3:;true-statement}",
 			".false:",
-			"\t${4:;false-statement}",
+			"    ${4:;false-statement}",
 		]
 	},
 	"IF-ELSE": {
@@ -60,12 +59,12 @@
 		"description": "Complete IF statement",
 		"body": [
 			"${1:;CMP/TEST}",
-			"J${2:cc}\t.true",
+			"J${2:cc}  .true",
 			".true:",
-			"\t${3:;true-statement1}",
-			"\tJMP\t.endif",
+			"    ${3:;true-statement1}",
+			"    JMP  .endif",
 			".false:",
-			"\t${4:;false-statement}",
+			"    ${4:;false-statement}",
 			".endif:",
 		]
 	},
@@ -75,10 +74,10 @@
 		"description": "While cycle (condition on start)",
 		"body": [
 			".while:",
-			"\t${1:;CMP/TEST}",
-			"\tJN${2:cc}\t.endwhile",
-			"\t${3:;while-statement}",
-			"\tJMP\t.while",
+			"    ${1:;CMP/TEST}",
+			"    JN${2:cc}  .endwhile",
+			"    ${3:;while-statement}",
+			"    JMP  .while\n",
 			".endwhile:\n"
 		]
 	},
@@ -88,9 +87,9 @@
 		"description": "Do-While cycle (condition on end)",
 		"body": [
 			".dowhile:",
-			"\t${1:;do-statement}",
-			"\t${2:;CMP/TEST}",
-			"\tJ${3:cc}\t.dowhile"
+			"    ${1:;do-statement}",
+			"    ${2:;CMP/TEST}",
+			"    J${3:cc}  .dowhile"
 		]
 	},
 	"FOR cycle": {
@@ -99,11 +98,11 @@
 		"description": "For cycle (known number of iterations)",
 		"body": [
 			".for:",
-			"\t${1:;CMP/TEST}",
-			"\tJN${2:cc}\t.endfor",
-			"\t${3:;for-statement}",
-			"\t${4:;update (ex. DEC\tecx)}",
-			"\tJMP\t.for",
+			"    ${1:;CMP/TEST}",
+			"    JN${2:cc}  .endfor",
+			"    ${3:;for-statement}",
+			"    ${4:;update (ex. DEC  ecx)}",
+			"    JMP  .for\n",
 			".endfor:"
 		]
 	},
@@ -112,7 +111,7 @@
 		"prefix": "fpuconst",
 		"description": "F.Constant to FPU PUSH",
 		"body": [
-			"PUSH    __FLOAT32__(${0:1.0})"
+			"PUSH  __FLOAT32__(${0:1.0})"
 		]
 	},
 	"Move from FPU to CPU": {
@@ -120,10 +119,10 @@
 		"prefix": "fpumove",
 		"description": "Move FPU value to CPU",
 		"body": [
-			";SUB \tesp, 4\t\t<- CLEAN YO STACK!",
-			"FSTP\tdword [esp]",
-			"MOV \teax, [esp]",
-			"ADD \tesp, 4",
+			";SUB  ESP, 4       <- CLEAN YO STACK!",
+			"FSTP  dword [ESP]",
+			"MOV  EAX, [ESP]",
+			"ADD  ESP, 4",
 		]
 	},
 	"Unmask FPU exceptions": {
@@ -131,10 +130,10 @@
 		"prefix": "fpuunmask",
 		"description": "Unmask FPU exceptions",
 		"body": [
-			"; cw\tDW\t0",
-			"FSTCW   [cw]",
-			"AND     [cw], word 0xFFF0",
-			"FLDCW   [cw]",
+			"; cw  DW  0    <- add to .data section",
+			"FSTCW  [cw]",
+			"AND  [cw], word 0xFFF0",
+			"FLDCW  [cw]",
 		]
 	},
 	"CN to EFLAGS": {
@@ -142,10 +141,10 @@
 		"prefix": "fpueflags",
 		"description": "Condition Flags to EFLAGS",
 		"body": [
-			";PUSH\teax",
-			"FSTSW\tax",
+			";PUSH  EAX",
+			"FSTSW  AX",
 			"SAHF",
-			";POP\teax"
+			";POP  EAX"
 		]
 	},
 	"FPU NaNs and infinities": {
@@ -153,12 +152,12 @@
 		"prefix": "FPU_EQU",
 		"description": "FPU NaNs/Infinities",
 		"body": [
-			"FPU_INF_POS\tequ\t0x7F800000",
-			"FPU_INF_NEG\tequ\t0xFF800000",
-			"FPU_SNaN_POS\tequ\t0x7F800001",
-			"FPU_SNaN_NEG\tequ\t0xFF8004F0",
-			"FPU_QNaN_POS\tequ\t0x7FC00001",
-			"FPU_QNaN_NEG\tequ\t0xFFC004F0"
+			"FPU_INF_POS  equ  0x7F800000",
+			"FPU_INF_NEG  equ  0xFF800000",
+			"FPU_SNaN_POS  equ  0x7F800001",
+			"FPU_SNaN_NEG  equ  0xFF8004F0",
+			"FPU_QNaN_POS  equ  0x7FC00001",
+			"FPU_QNaN_NEG  equ  0xFFC004F0"
 		]
 	}
 }
