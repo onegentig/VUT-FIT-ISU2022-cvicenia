@@ -15,16 +15,19 @@ section .data
     vypite  DW  2, 6, 4
 section .text
 CMAIN:
-    MOV     EAX, 0
-    MOV     EDX, 0
+    XOR     EAX, EAX
+    XOR     EBX, EBX
+    XOR     EDX, EDX
     MOV     ECX, 3
     
-    CYKLUS:
+    .CYKLUS:
         MOV     EAX, [ceny + (ECX - 1) * 4]
         MOV     DX, [vypite + (ECX - 1) * 2]
         MUL     DX
         ADD     EBX, EAX
-        LOOP    CYKLUS
+        DEC     ECX
+        JNZ     .CYKLUS
 
     MOV     EAX, EBX
     CALL    WriteUInt16
+    RET

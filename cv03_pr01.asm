@@ -8,7 +8,7 @@
 
 section .data
     pole1   DW   22, 32, 6, 81, 67, 99
-    pole2   DD   42, 12, 9, 1, 87, 34
+    pole2   DD   42, 12, 9,  1, 87, 34
 
 section .text
 CMAIN:
@@ -20,29 +20,30 @@ CMAIN:
     CALL    WriteUInt16
     CALL    WriteNewLine
 
-    ADD     ECX, 1  ; alternatívne INC ECX
+    INC     ECX
     MOV     EAX, [pole1 + ECX * 2]
     CALL    WriteUInt16
     CALL    WriteNewLine
 
-    ADD     ECX, 1
+    INC     ECX
     MOV     EAX, [pole2 + ECX * 4]
     MOV     [pole1 + ECX * 2], AX
     CALL    WriteUInt16
     CALL    WriteNewLine
 
-    ADD     ECX, 1
+    INC     ECX
     MOV     EAX, [pole1 + ECX * 2]
     CALL    WriteUInt16
     CALL    WriteNewLine
 
-    ADD     ECX, 1
+    INC     ECX
     MOV     EAX, [pole2 + ECX * 4]
     MOV     [pole1 + ECX * 2], AX
     CALL    WriteUInt16
     CALL    WriteNewLine
 
-    ADD     ECX, 1
+    INC     ECX
     MOV     EAX, [pole1 + ECX * 2]
     CALL    WriteUInt16
     CALL    WriteNewLine
+    RET

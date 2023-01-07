@@ -6,17 +6,19 @@
 ; uložte do pamäťového miesta `o` (16-bit).
 
 section .data
-    a    DB    100
-    b    DW    120
-    o    DW    0
+    a       DB  100
+    b       DW  120
+    o       DW  0
 
 section .text
 CMAIN:
+    XOR     AH, AH
     MOV     AL, [a]
     ADD     AL, AL
 
     MOV     BX, [b]
     ADD     BX, BX
 
-    ADD     BX, AL
+    ADD     BX, AX
     MOV     [o], BX
+    RET

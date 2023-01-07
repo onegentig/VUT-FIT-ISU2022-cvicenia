@@ -9,15 +9,13 @@
 ;   PF (parity flag)
 ;   AF (auxiliary carry flag)
 
-section .data
-
 section .text
 CMAIN:
     ; ZF
-    MOV     AX, 1
-    SUB     AX, 1
+    XOR     AX, AX
     CALL    WriteFlags
 
     ; SF, CF, PF, AF
     SUB     AX, 1
     CALL    WriteFlags
+    RET

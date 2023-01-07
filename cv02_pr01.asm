@@ -5,11 +5,12 @@
 ; uložte do pamäťového miesta so symbolickou adresou `isu`.
 
 section .data
-    isu    DB    0
+    isu     DB  0
 
 section .text
 CMAIN:
-    MOV     AL, 120
-    MOV     BL, 30
+    MOV     AL, 5
+    MOV     BL, 2
     ADD     AL, BL
     MOV     [isu], AL
+    RET

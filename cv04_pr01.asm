@@ -17,3 +17,4 @@ CMAIN:
     MOV     BX, 2
     DIV     BX
     CALL    WriteUInt16
+    RET

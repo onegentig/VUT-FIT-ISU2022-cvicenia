@@ -28,3 +28,4 @@ CMAIN:
     ; pole[0]^2 + pole[1] + pole[2]/(-2 * pole[3])
     ADD     AX, CX
     CALL    WriteInt16
+    RET

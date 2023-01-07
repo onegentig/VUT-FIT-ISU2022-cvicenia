@@ -6,7 +6,7 @@
 ; iba aritmetické funkcie ADD a SUB.
 
 section .data
-    pole    DB      10,20,30,40,50
+    pole    DB  10, 20, 30, 40, 50
 
 section .text
 CMAIN:
@@ -23,3 +23,4 @@ CMAIN:
     ADD     ECX, 2
     MOV     AL, [pole + ECX * 1]
     CALL    WriteUInt8
+    RET
