@@ -2,14 +2,13 @@
 
 *Cvičenia z predmetu Programovanie na strojovej úrovni (ISU), druhý semester bakalárskeho štúdia BIT na FIT VUT/BUT, ak.rok 2021/2022*
 
-Tieto kódy som znovu-objavil na starom VPS a chcel som si ich archivovať.
+Toto je archív mojích kódikov z ISU cvičení, ktoré som znovu-objavil na starom VPS.
 
 ## Použitie
 
 *Môžem aspoň zdielať čo som odskúšal, možno to niekomu pomôže pri setupe?* <img alt=":shrunk:" src="https://user-images.githubusercontent.com/84882649/211150332-b179af74-61e3-470a-b5a8-3cad87ab6e62.png" height="16px" />
 
 ```sh
-# Surové spustenie test.asm
 nasm -f elf32 -g -o ./build/test.o test.asm
 gcc -fverbose-asm -m32 -no-pie -o ./build/test build/test.o
 ./build/test
@@ -19,11 +18,11 @@ Vo Visual Studio Code, súbory [launch.json](.vscode/launch.json) a [tasks.json]
 
 ### Potrebné knižnice
 
-MacOS ani Windows som neskúšal spojazniť. K MacOS bol niekde FOg-approved návod na setup (prehľadajte MOODLE, prípadne školský Discord). Na Windows treba použiť GoLink, ktorý by mal byť v archíve na MOODLE. Surové spustenie by malo vypadať nejako takto:
+MacOS ani Windows som neskúšal spojazniť. K MacOS bol niekde FOg-approved návod na setup (prehľadajte MOODLE, prípadne školský Discord). Na Windows treba použiť GoLink, ktorý by mal byť v archíve na MOODLE. Spustenie by malo vypadať nejako takto:
 
 ```shell
-nasm -f win32 -g -o helloworld.obj helloworld.asm
-golink helloworld.obj /fo helloworld.exe /console /debug coff /entry:_main msvcrt.dll kernel32.dll
+nasm -f win32 -g -o test.obj test.asm
+golink test.obj /fo test.exe /console /debug coff /entry:_main msvcrt.dll kernel32.dll
 ```
 
 …something something, use Linux. <img alt=":bigsmile:" src="https://user-images.githubusercontent.com/84882649/211153299-46968349-9e70-4125-8646-6d8772bc3097.png" height="16px" />
@@ -39,7 +38,7 @@ apt -y install gcc-multilib # 32-bit libraries
 apt -y install nasm
 ```
 
-#### Red Hat-based (Fedora, RHEL,…)
+#### Red Hat-based distros (Fedora, RHEL,…)
 
 *Testované na Fedore.*
 
@@ -52,12 +51,12 @@ dnf -y install nasm
 
 #### Arch-based (Arch btw, EndeavourOS,…)
 
-*Testované na EndeavourOS. `yay` je EndeavourOS preferovaný AUR helper, takže idem s tým, ale `pacman` na čisto by mal fungovať tak isto...i think. Verím Vám, že si poradíte.* <img alt=":bigsmile:" src="https://user-images.githubusercontent.com/84882649/211153299-46968349-9e70-4125-8646-6d8772bc3097.png" height="16px" />
+*Testované na EndeavourOS. `yay` je EndeavourOS preferovaný AUR helper, takže idem s tým, ale `pacman` na čisto by mal fungovať tak isto…i think… Verím Vám, že si poradíte.* <img alt=":bigsmile:" src="https://user-images.githubusercontent.com/84882649/211153299-46968349-9e70-4125-8646-6d8772bc3097.png" height="16px" />
 
 ```sh
 yay -Syu
 yay -S base-devel # Development tools, install all
-yay -S glibc lib32-gcc-libs # 32-bit libraries
+yay -S lib32-gcc-libs # 32-bit libraries
 yay -S nasm
 ```
 
