@@ -1,9 +1,5 @@
 %include "rw32-2022.inc"
 
-; Zadanie: Vytvorte funkciu s dvoma parametrami, ktorá znakom X 
-vykreslí obdĺžnik.
-;               Prvý parameter bude šírka, druhý výška.
-
 ;       CV07 (Práca so zasobníkom)
 ; Vytvorte funkciu `rectangle` s dvoma parametrami
 ; (výška a šírka obdĺžnika), ktorá vykreslí na
@@ -23,17 +19,17 @@ RECTANGLE:
     MOV     ECX, [EBP+8]        ; ECX = výška 
     MOV     EBX, [EBP+12]       ; EBX = šírka
 
-    LINE:
+    .LINE:
         MOV     EBX, [EBP+12]
-        ROW:
+        .ROW:
             CALL    WriteChar
             DEC     EBX
             CMP     EBX, 0
-            JNE     ROW
+            JNE     .ROW
         CALL    WriteNewLine
         DEC     ECX
         CMP     ECX, 0
-        JNE     LINE        
+        JNE     .LINE        
         
     POPAD
     LEAVE
@@ -56,3 +52,4 @@ CMAIN:
     CALL    RECTANGLE
 
     LEAVE
+    RET

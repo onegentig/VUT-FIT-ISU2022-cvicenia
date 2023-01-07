@@ -7,24 +7,23 @@
 ; Potom otočte poradie bitov tohoto čísla, a
 ; výsledok vypíšte aj binárne aj číselne.
 
-section .data
-
 section .text
 CMAIN:
-    XOR     EAX, EAX
-    XOR     EBX, EBX
+    XOR     AX, AX
+    XOR     BX, BX
     MOV     ECX, 8
     CALL    ReadUInt8
     CALL    WriteBin8
     CALL    WriteNewLine
 
-    CYKLUS:
+    .CYKLUS:
         SHR     AL, 1
         RCL     BL, 1
-        LOOP CYKLUS
+        LOOP    .CYKLUS
 
     MOV     AL, BL
     CALL    WriteBin8
     CALL    WriteNewLine
     CALL    WriteUInt8
     CALL    WriteNewLine
+    RET

@@ -1,4 +1,3 @@
-
 %include "rw32-2022.inc"
 
 ;       CV03 (Registre a prístup do pamäti, č. 2)

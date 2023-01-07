@@ -4,8 +4,6 @@
 ; Vytvorte funkciu `funkce` a precvičte
 ; si inštrukcie CALL a RET.
 
-section .data
-
 section .text
 FUNKCE:
     PUSH    EBP             ; stack-frame vstup (uloženie EBP)
@@ -20,4 +18,4 @@ FUNKCE:
 CMAIN:
     PUSH    DWORD 10
     CALL    FUNKCE
-    RET  
+    RET

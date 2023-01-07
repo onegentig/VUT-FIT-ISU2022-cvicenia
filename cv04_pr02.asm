@@ -13,18 +13,22 @@ CMAIN:
     ; pole[0]^2
     MOV     AX, [pole + 0 * 2]
     MUL     AX
+
     ; pole[0]^2 + pole[1]
     ADD     AX, [pole + 1 * 2]
     MOV     CX, AX
+
     ; -2 * pole[3]
     MOV     AX, [pole + 3 * 2]
     MOV     BX, -2
     IMUL    BX
     MOV     BX, AX
+
     ; pole[2]/(-2 * pole[3])
     MOV     AX, [pole + 2 * 2]
     CWD
     IDIV    BX
+
     ; pole[0]^2 + pole[1] + pole[2]/(-2 * pole[3])
     ADD     AX, CX
     CALL    WriteInt16

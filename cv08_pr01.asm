@@ -17,15 +17,20 @@ section .text
 CMAIN:
     MOV     AL, [var1]
     MOV     AH, [var2]
+
     ; IF (var1 > var2)
     CMP     AL, AH
-    JNG     FALSE 
-    TRUE:
+    JNG     .FALSE
+
+    .TRUE:
         MOV     ESI, strTrue
         CALL    WriteString
-        JMP     END
-    FALSE:
+        JMP     .END
+
+    .FALSE:
         MOV     ESI, strFalse
         CALL    WriteString
-    END:
+        JMP     .END
+
+    .END:
         RET

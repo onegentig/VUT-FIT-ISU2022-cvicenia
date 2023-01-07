@@ -14,18 +14,18 @@ section .data
 
 section .text
 CMAIN:
-    ENTER	0, 0
+    ENTER   0, 0
     SUB     ESP, 4
     FINIT
 
-    FLD     DWORD [b]   ; st0 = b
-    FLD     DWORD [a]   ; st0 = a, st1 = b
+    FLD     dword [b]   ; st0 = b
+    FLD     dword [a]   ; st0 = a, st1 = b
     FADD    ST1         ; st0 = a+b, st1 = b
-    FLD     DWORD [c]   ; st0 = c, st1 = a+b, st2 = b
+    FLD     dword [c]   ; st0 = c, st1 = a+b, st2 = b
     FADDP   ST2         ; st0 = b+c, st1 = a+b
     FMULP   ST1         ; st0 = (a+b)(b+c)
 
-    FSTP    DWORD [EBP]
+    FSTP    dword [EBP]
     MOV     EAX, [EBP]
     CALL    WriteFloat
     

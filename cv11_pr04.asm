@@ -15,7 +15,7 @@ section .data
 
 section .text
 VYPOCET:
-    ENTER	4, 0
+    ENTER   4, 0
 
     ; malloc()
     MOV     EDI, 8
@@ -46,7 +46,7 @@ VYPOCET:
     RET     4
 
 CMAIN:
-    ENTER	0, 0
+    ENTER   0, 0
 
     ; volanie funkcie (zásobník čistí funkcia)
     PUSH    DWORD [x]

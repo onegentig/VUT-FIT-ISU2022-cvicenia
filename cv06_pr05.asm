@@ -4,8 +4,8 @@
 ;    [https://youtu.be/iy89i237-oE]
 ; Do pamäti načítajte následovné čísla s ľubovoľnými
 ; hodnotami:
-;  `a` - 8-bit  znamienkový integer
-;  `b` - 8-bit  znamienkový integer
+;  `a` -  8-bit znamienkový integer
+;  `b` -  8-bit znamienkový integer
 ;  `c` - 16-bit znamnienkový integer
 ;  `d` - 32-bit znamienkový integer
 ; a vypočítajte výraz:
@@ -26,12 +26,13 @@ CMAIN:
     MOV     AL, [a]
     ADD     AL, [b]
     CBW
-    IMUL    WORD [c]
+    IMUL    word [c]
     SHL     EDX, 16
     MOV     DX, AX
     MOV     EAX, EDX
     SUB     EAX, 42
     CDQ
-    IDIV    DWORD [d]
+    IDIV    dword [d]
     MOV     [x], EAX
     CALL    WriteInt32
+    RET

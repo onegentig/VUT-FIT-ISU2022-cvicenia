@@ -8,16 +8,16 @@ CEXTERN printf
 
 section .data
     x       DQ  20.0
-    f_str   DB  "%f",0
+    f_str   DB  "%.2f", 0
 
 section .text
 CMAIN:
-    ENTER	0, 0
+    ENTER   0, 0
     SUB     ESP, 4
     FINIT
 
-    PUSH    DWORD [x+4]
-    PUSH    DWORD [x]
+    PUSH    dword [x+4]
+    PUSH    dword [x]
     PUSH    f_str
     CALL    printf
 

@@ -8,21 +8,21 @@ CEXTERN printf
 
 section .data
     x       DQ  20.0
-    f_str   DB  "%f",0
+    f_str   DB  "%.3f", 0
 
 section .text
 CMAIN:
-    ENTER	0, 0
+    ENTER   0, 0
     SUB     ESP, 12
 
-    PUSH    DWORD [x+4]
-    PUSH    DWORD [x]
-    FLD     QWORD [ESP]
+    PUSH    dword [x+4]
+    PUSH    dword [x]
+    FLD     qword [ESP]
     FSIN
     PUSH    __FLOAT32__(4.0)
-    FLD     DWORD [ESP]
+    FLD     dword [ESP]
     FMULP
-    FSTP	QWORD [ESP]
+    FSTP    qword [ESP]
     PUSH    f_str
     CALL    printf
 

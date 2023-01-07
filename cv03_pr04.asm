@@ -18,3 +18,4 @@ CMAIN:
     MOV      EBX, [p_array + 2 * 4]
     MOV      AL, [EBX + 3 * 1]
     CALL     WriteUInt8
+    RET

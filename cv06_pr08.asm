@@ -25,3 +25,4 @@ CMAIN:
     MOV     EAX, EDX
     MOV     [x], EAX
     CALL    WriteUInt32
+    RET

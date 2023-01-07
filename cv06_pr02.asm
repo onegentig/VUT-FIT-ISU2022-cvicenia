@@ -2,23 +2,22 @@
 
 ;       CV06 (Príprava na test 1)
 ;    [https://youtu.be/iy89i237-oE]
-; Načítajte 16-bitové bezznamienkové číslo do
+; Načítajte 16-bitové bez-znamienkové číslo do
 ; registra AX a spočítajte počet jednotkových
 ; bitov daného čísla.
 
-section .data
-
 section .text
 CMAIN:
-    XOR     EAX, EAX
-    XOR     EBX, EBX
+    XOR     AX, AX
+    XOR     BX, BX
     CALL    ReadUInt16
     MOV     ECX, 16
 
-    CYKLUS:
+    .CYKLUS:
         SHR     AX, 1
         ADC     BX, 0
-        LOOP    CYKLUS
+        LOOP    .CYKLUS
 
     MOV     AX, BX
     CALL    WriteUInt16
+    RET

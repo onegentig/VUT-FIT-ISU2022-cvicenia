@@ -13,6 +13,7 @@
 section .data
     ceny    DD  25, 20, 21
     vypite  DW  2, 6, 4
+
 section .text
 CMAIN:
     XOR     EAX, EAX

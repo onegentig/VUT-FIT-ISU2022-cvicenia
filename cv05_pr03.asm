@@ -6,8 +6,6 @@
 ; princípom masky a aký bude výsledok. Hornú polovicu
 ; EBX potom uložte do AX a hodnotu AX vypíšte.
 
-section .data
-
 section .text
 CMAIN:
     MOV     EBX, 0xA1FF
@@ -15,3 +13,4 @@ CMAIN:
     ROR     EBX, 16
     MOV     AX, BX
     CALL    WriteUInt16
+    RET
