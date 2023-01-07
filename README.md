@@ -19,9 +19,18 @@ Vo Visual Studio Code, súbory [launch.json](.vscode/launch.json) a [tasks.json]
 
 ### Potrebné knižnice
 
-#### Debian-based distros (Ubuntu, Mint,…)
+*Hľadanie 32-bitových knižníc bola na tom tá najväčšia sranda.*
 
-*Testované na Debian a Linux Mint*
+MacOS ani Windows som neskúšal spojazniť. K MacOS bol niekde FOg-approved návod na setup (prehľadajte MOODLE, prípadne školský Discord). Na Windows treba použiť GoLink, ktorý by mal byť v archíve na MOODLE. Surové spustenie by malo vypadať nejako takto:
+
+```shell
+nasm -f win32 -g -o helloworld.obj helloworld.asm
+golink helloworld.obj /fo helloworld.exe /console /debug coff /entry:_main msvcrt.dll kernel32.dll
+```
+
+...something something, use Linux.
+
+#### Debian-based distros (Ubuntu, Debian, Mint,…)
 
 ```sh
 apt -y update
@@ -40,7 +49,7 @@ dnf -y install nasm
 
 #### Arch-based (Arch btw, EndeavourOS,…)
 
-*Testované na EndeavourOS. `yay` je EndeavourOS preferovaný AUR helper, takže idem s tým, ale `pacman` na čisto by mal fungovať tak isto...i think.* <img alt=":bigsmile:" src="https://user-images.githubusercontent.com/84882649/211153299-46968349-9e70-4125-8646-6d8772bc3097.png" height="16px" />
+*Testované na 🌌 EndeavourOS. `yay` je EndeavourOS preferovaný AUR helper, takže idem s tým, ale `pacman` na čisto by mal fungovať tak isto...i think. Verím Vám, že si poradíte.* <img alt=":bigsmile:" src="https://user-images.githubusercontent.com/84882649/211153299-46968349-9e70-4125-8646-6d8772bc3097.png" height="16px" />
 
 ```sh
 yay -Syu
