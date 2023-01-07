@@ -19,8 +19,6 @@ Vo Visual Studio Code, súbory [launch.json](.vscode/launch.json) a [tasks.json]
 
 ### Potrebné knižnice
 
-*Hľadanie 32-bitových knižníc bola na tom tá najväčšia sranda.*
-
 MacOS ani Windows som neskúšal spojazniť. K MacOS bol niekde FOg-approved návod na setup (prehľadajte MOODLE, prípadne školský Discord). Na Windows treba použiť GoLink, ktorý by mal byť v archíve na MOODLE. Surové spustenie by malo vypadať nejako takto:
 
 ```shell
@@ -28,36 +26,41 @@ nasm -f win32 -g -o helloworld.obj helloworld.asm
 golink helloworld.obj /fo helloworld.exe /console /debug coff /entry:_main msvcrt.dll kernel32.dll
 ```
 
-...something something, use Linux.
+…something something, use Linux. <img alt=":bigsmile:" src="https://user-images.githubusercontent.com/84882649/211153299-46968349-9e70-4125-8646-6d8772bc3097.png" height="16px" />
 
 #### Debian-based distros (Ubuntu, Debian, Mint,…)
 
+*Testované na Debiane (server) a Linux Minte.*
+
 ```sh
 apt -y update
-apt -y install binutils build-essential gcc gcc-multilib gdb # C dev tools
+apt -y install binutils build-essential gdb # Development tools
+apt -y install gcc-multilib # 32-bit libraries
 apt -y install nasm
 ```
 
-#### Fedora
+#### Red Hat-based (Fedora, RHEL,…)
+
+*Testované na Fedore.*
 
 ```sh
 dnf -y update
 dnf -y group install "C Development Tools and Libraries"
-dnf -y install glibc-devel.i686 # 32-bit dev libraries
+dnf -y install glibc-devel.i686 # 32-bit libraries
 dnf -y install nasm
 ```
 
 #### Arch-based (Arch btw, EndeavourOS,…)
 
-*Testované na 🌌 EndeavourOS. `yay` je EndeavourOS preferovaný AUR helper, takže idem s tým, ale `pacman` na čisto by mal fungovať tak isto...i think. Verím Vám, že si poradíte.* <img alt=":bigsmile:" src="https://user-images.githubusercontent.com/84882649/211153299-46968349-9e70-4125-8646-6d8772bc3097.png" height="16px" />
+*Testované na EndeavourOS. `yay` je EndeavourOS preferovaný AUR helper, takže idem s tým, ale `pacman` na čisto by mal fungovať tak isto...i think. Verím Vám, že si poradíte.* <img alt=":bigsmile:" src="https://user-images.githubusercontent.com/84882649/211153299-46968349-9e70-4125-8646-6d8772bc3097.png" height="16px" />
 
 ```sh
 yay -Syu
-yay -S base-devel # dev tools, install everything
-yay -S glibc lib32-gcc-libs # 32-bit dev libraries
+yay -S base-devel # Development tools, install all
+yay -S glibc lib32-gcc-libs # 32-bit libraries
 yay -S nasm
 ```
 
 ## Snippety
 
-Dávam sem aj moje 💩 snippety v súbore [isu.code-snippets](.vscode/isu.code-snippets). Je to len čiastočný copy-paste z prezentácií, ktorý som druhú polovicu semestra skoro vôbec neaktualizoval - skôr to prikladám ako šablónu, keby ste sa s tým chceli pohrať a [spraviť si vlastné](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets). U nás boli vlastné snippety povolené aj na písomkách (pozor: nemusí platiť aj tento rok).
+Dávam sem aj moje 💩 snippety v súbore [isu.code-snippets](.vscode/isu.code-snippets). Je to len čiastočný copy-paste z prezentácií, ktorý som druhú polovicu semestra skoro vôbec neaktualizoval - skôr to prikladám ako šablónu, keby ste sa s tým chceli pohrať a [spraviť si vlastné](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets). U nás boli vlastné snippety povolené aj na písomkách (pozor: nemusí platiť aj tento rok!).
