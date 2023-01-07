@@ -22,7 +22,7 @@ Pokiaľ sa Vám nechce neustále písať tieto príkazy do terminálu, proces si
 ext install DamianKoper.gdb-debug
 ```
 
-![screenshot](https://user-images.githubusercontent.com/84882649/211169227-7ab48df7-9439-4f99-8c2e-97ca232475fa.png)
+![screenshot](https://user-images.githubusercontent.com/84882649/211170292-5e8e6c17-008d-4262-922e-e93b8937d0a2.png)
 
 Pre debugging použite klávesu `F5`, a `CTRL + F5` na spustenie bez debugu. Na plnohodnotný debug musíte do kódu pridať *breakpointy* (tie červené bodky), kde program sa pozastaví, a môžete v ňom krokovať pomocou tlačidiel v hornom menu. Je dosť možné, že Vám pridávať breakpointy nepôjde, ale všetko sa dá obísť - vo VSCode nastaveniach (File > Preferences > Settings) nájdite nastavenie *"Debug: Allow Breakpoints Everywhere"* a povolte ho.
 
