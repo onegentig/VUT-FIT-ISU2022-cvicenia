@@ -8,40 +8,53 @@
 ; "ano" alebo "nie".
 
 section .data
-    ano    DB    "ano",0
-    ne     DB    "ne",0
+    ano    DB  "ano", 0
+    ne     DB  "ne",  0
 
 section .text
 CMAIN:
     XOR     EAX, EAX
     CALL    ReadUInt16
-    MOV     EBX, EAX
+
+    ; 1 a 0 nie sú prvočísla
+    CMP     EAX, 0
+    JE      .NOTPRIME
+    CMP     EAX, 1
+    JE      .NOTPRIME
+
+    ; Cyklus na vydelenie čísla všetkými
+    ; menšími číslami. Ak pri akomkoľvek
+    ; delení vyjde 0, číslo nie je
+    ; prvočíslo.
     MOV     ECX, EAX
-    SUB     ECX, 2
+    DEC     ECX
 
-    CYKLUS:
-        CMP     CX, 0
-        JE      PRIME
-        JNG     NOTPRIME
+    .CYKLUS:
+        ; Ak ECX == 1, koniec cyklu
+        CMP     ECX, 1
+        JLE     .PRIME
 
-        XOR     DX, DX
-        MOV     AX, BX
-        ADD     CX, 1
-        DIV     CX
+        ; EAX = EDX:EAX / CX
+        ; EDX = zvyšok
+        XOR     EDX, EDX
+        PUSH    EAX
+        IDIV    CX
+
+        ; Ak je zvyšok 0, nie je prvočíslo
+        POP     EAX
         CMP     DX, 0
-        JE      NOTPRIME
+        JE      .NOTPRIME
 
-        SUB     CX, 2
-        JMP     CYKLUS
+        ; Pokračovanie cyklu
+        DEC     CX
+        JMP     .CYKLUS
 
-    NOTPRIME:
+    .NOTPRIME:
         MOV     ESI, ne
         CALL    WriteString
-        CALL    WriteNewLine
         RET
 
-    PRIME:
+    .PRIME:
         MOV     ESI, ano
         CALL    WriteString
-        CALL    WriteNewLine
         RET

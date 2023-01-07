@@ -9,12 +9,16 @@ section .data
 section .text
 CMAIN:
     XOR     EAX, EAX
+    XOR     EDX, EDX
     MOV     ECX, 11
 
-    CYKLUS:
-        ADD     AL, [pole + (ECX - 1) * 1]
-        LOOP CYKLUS
+    .CYKLUS:
+        MOVSX   DX, [pole + (ECX - 1)]
+        ADD     AX, DX
+        LOOP    .CYKLUS
 
     MOV     CL, 11
-    DIV     CL
-    CALL    WriteUInt8
+    IDIV    CL
+    CBW
+    CALL    WriteInt8
+    RET

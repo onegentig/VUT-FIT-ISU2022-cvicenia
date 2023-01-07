@@ -5,22 +5,27 @@
 ; logických inštrukcií preveďte číslo na
 ; kladné.
 
-section .data
-
 section .text
 CMAIN:
     XOR     AX, AX
-    XOR     DX, DX
+
+    ; -16 / 2
     MOV     AX, -16
     MOV     BL, 2
     IDIV    BL
-    MOV     DL, AL
+    CBW
+    MOV     DX, AX
     
+    ; -5 * 3
     MOV     AL, -5
     MOV     BL, 3
     IMUL    BL
-    ADD     AL, DL
 
-    SUB     AL, 1
-    NOT     AL
-    CALL    WriteUInt8
+    ; (-16 / 2) + (-5 * 3)
+    ADD     AX, DX
+
+    ; Prevod na kladné číslo
+    NOT     AX
+    ADD     AX, 1
+    CALL    WriteInt16
+    RET
