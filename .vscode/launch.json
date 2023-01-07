@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "configurations": [
+        {
+            "name": "Debug (launch)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/build/${fileBasenameNoExtension}",
+            "preLaunchTask": "GCC-build",
+            "cwd": "${fileDirname}",
+            "setupCommands": [
+                {
+                    "text": "set disassembly-flavor intel"
+                },
+                {
+                    "text": "-enable-pretty-printing"
+                }
+            ],
+        }
+    ]
+}

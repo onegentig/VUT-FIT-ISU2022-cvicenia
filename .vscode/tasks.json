@@ -4,13 +4,17 @@
         {
             "label": "NASM-Compile",
             "command": "nasm",
-            "args": [ 
-                "-felf32", 
-                "-F", "dwarf", 
-                "-g", 
-                "-i", "${workspaceFolder}",
-                "-o", "${workspaceFolder}/build/${fileBasenameNoExtension}.o",
-                "${file}" 
+            "args": [
+                "-f",
+                "elf32",
+                "-F",
+                "dwarf",
+                "-g",
+                "-i",
+                "${workspaceFolder}",
+                "-o",
+                "${workspaceFolder}/build/${fileBasenameNoExtension}.o",
+                "${file}"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
@@ -19,22 +23,27 @@
                 "focus": true,
                 "reveal": "silent",
                 "revealProblems": "onProblem",
-                "panel": "shared",                
+                "panel": "shared",
             }
         },
         {
             "label": "GCC-build",
-            "command": "gcc",           
-            "args": [ 
-                "-m32", 
+            "command": "gcc",
+            "args": [
+                "-fverbose-asm",
+                "-m32",
+                "-no-pie",
                 "-ggdb",
-                "-o", "${workspaceFolder}/build/${fileBasenameNoExtension}", 
-                "${workspaceFolder}/build/${fileBasenameNoExtension}.o" 
+                "-o",
+                "${workspaceFolder}/build/${fileBasenameNoExtension}",
+                "${workspaceFolder}/build/${fileBasenameNoExtension}.o"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
             },
-            "dependsOn": [ "NASM-Compile" ],
+            "dependsOn": [
+                "NASM-Compile"
+            ],
             "group": {
                 "kind": "build",
                 "isDefault": true
