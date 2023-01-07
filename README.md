@@ -10,7 +10,7 @@ Toto je archív mojích kódikov z ISU cvičení, ktoré som znovu-objavil na st
 
 ```sh
 nasm -f elf32 -g -o ./build/test.o test.asm
-gcc -fverbose-asm -m32 -no-pie -o ./build/test build/test.o
+gcc -fverbose-asm -m32 -o ./build/test build/test.o
 ./build/test
 ```
 

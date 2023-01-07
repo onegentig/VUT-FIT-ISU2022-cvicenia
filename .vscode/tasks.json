@@ -32,7 +32,6 @@
             "args": [
                 "-fverbose-asm",
                 "-m32",
-                "-no-pie",
                 "-ggdb",
                 "-o",
                 "${workspaceFolder}/build/${fileBasenameNoExtension}",
