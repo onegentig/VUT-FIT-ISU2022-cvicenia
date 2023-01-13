@@ -4,7 +4,7 @@
 
 ⚠️ **Zverejnené pre archívne účely — nekopírujte, nula by Vás mrzela. Za nič také nenesiem žiadnu zodpovednosť!** Všetky odovzdané projekty prechádzajú kontrolou plagiátorstva, pri ktorej sa porovnávajú aj s dávnejšie odovzdanými riešeniami.
 
-Toto je archív mojích kódikov z ISU cvičení, ktoré som znovu-objavil na starom VPS, plus samouka na testy. Všetky súbory sú závislé na podpornej knižnici `rw32-2022.inc` ([MOODLE.vut.cz](https://moodle.vut.cz/pluginfile.php/370054/mod_folder/content/0/RW32/rw32-2022.inc?forcedownload=1), [archive.org](https://archive.org/download/rw32-2022/rw32-2022.inc))
+Toto je archív mojích kódikov z ISU cvičení, ktoré som znovu-objavil na starom VPS (aspoň čo sa zachovalo), plus samouka na testy (cv06, cv10, cv13). Všetky súbory sú závislé na podpornej knižnici `rw32-2022.inc` ([MOODLE.vut.cz](https://moodle.vut.cz/pluginfile.php/370054/mod_folder/content/0/RW32/rw32-2022.inc?forcedownload=1), [archive.org](https://archive.org/download/rw32-2022/rw32-2022.inc)).
 
 ## Spojaznenie
 
@@ -104,7 +104,7 @@ Pretože assembly neuchováva typ "premenných" (a po kompilácií ani veľkosť
 * `long` — 32-bitov (dd)
 * `long long` — 64-bitov (dq)
 
-Veľkosti a typy môžu byť osobitne, napr. `(int)(short)varname`, alebo kombinovane, napr. `(short int)varname` - k tomu ešte je možné špecifikovať znamienkovosť, napr. `(unsigned short int)varname`.
+Veľkosti a typy môžu byť osobitne, napr. `(int)(short)varname`, alebo kombinovane (16-bit+), napr. `(short int)varname` - k tomu ešte je možné špecifikovať znamienkovosť, napr. `(unsigned short int)varname`.
 
 A ako posledné máte niekoľko možností formátu výpisu (píše sa za výrazom, oddelený čiarkou):
 
@@ -123,31 +123,31 @@ Tu máte zopár možností na výpis. Vyberte si, čo Vám príde najintuitívne
 <details>
 <summary><b>Tabuľka výpisových výrazov</b></summary>
 
-|           **Type of value**          |                                     **Watch expression methods**                                     |
-|:------------------------------------:|:----------------------------------------------------------------------------------------------------:|
-| String (any sized ptr)               | `&varname,s`                                                                                         |
-| Integer at the top of the stack      | `*(int*)$esp`                                                                                        |
-| 8-bit  (DB) signed int               | `(char)varname,d`<br>`(signed char)varname,d`<br>`(int)(char)varname`<br>`(signed int)(char)varname` |
-| 8-bit  (DB) unsigned int             | `(unsigned int)(char)varname`<br>`(int)(unsigned char)varname`                                       |
-| 8-bit  (DB) int in hex               | `(char)varname,x`<br>`(int)(char)varname,x`                                                          |
-| 8-bit  (DB) char                     | `(char)var`<br>`(char)var,c`                                                                         |
-| 16-bit (DB) signed int               | `(short int)varname`<br>`(short signed int)varname`<br>`(short)varname,d`                            |
-| 16-bit (DW) unsigned int             | `(short unsigned int)varname`                                                                        |
-| 16-bit (DW) int in hex               | `(short int)var,x`<br>`(short)var,x`                                                                 |
-| 32-bit (DD) signed int               | `(long int)var`<br>`(long signed int)var`<br>`(long)int,d`                                           |
-| 32-bit (DD) unsigned int             | `(long unsigned int)varname`                                                                         |
-| 32-bit (DD) int in hex               | `(long int)varname,x`<br>`(long)varname,x`                                                           |
-| 32-bit (DD) float                    | `(float)varname`                                                                                     |
-| 64-bit (DQ) signed int               | `(long long int)varname`<br>`(long long signed int)varname`<br>`(long long)varname,d`                |
-| 64-bit (DQ) unsigned int             | `(long long unsigned int)varname`                                                                    |
-| 64-bit (DQ) int in hex               | `(long long int)varname,x`<br>`(long long)varname,x`                                                 |
-| 64-bit (DQ) float                    | `(double)varname`                                                                                    |
-| 10-elm array of 8-bit  signed ints   | `(char[10])varname,d`                                                                                |
-| 10-elm array of 8-bit  unsigned ints | (iba ako unsigned char)<br>`(unsigned char[10])varname`                                              |
-| 10-elm array of 8-bit  ints in hex   | `(char[10])varname,x`                                                                                |
-| 10-elm array of 16-bit signed ints   | `(short int[10])varname`<br>`(short[10])varname,d`<br>`(signed short[10])varname,d`                  |
-| 10-elm array of 16-bit unsigned ints | `(unsigned short int[10])varname`                                                                    |
-| 10-elm array of 16-bit ints in hex   | `(short[10])varname,x`<br>`(short int[10])varname,x`<br>`(signed short[10])varname,x`                |
+|          **Type of value**           |                                     **Watch expression methods**                                     |
+| :----------------------------------: | :--------------------------------------------------------------------------------------------------: |
+|        String (any sized ptr)        |                                             `&varname,s`                                             |
+|   Integer at the top of the stack    |                                            `*(int*)$esp`                                             |
+|        8-bit  (DB) signed int        | `(char)varname,d`<br>`(signed char)varname,d`<br>`(int)(char)varname`<br>`(signed int)(char)varname` |
+|       8-bit  (DB) unsigned int       |                    `(unsigned int)(char)varname`<br>`(int)(unsigned char)varname`                    |
+|        8-bit  (DB) int in hex        |                             `(char)varname,x`<br>`(int)(char)varname,x`                              |
+|           8-bit  (DB) char           |                                     `(char)var`<br>`(char)var,c`                                     |
+|        16-bit (DB) signed int        |              `(short int)varname`<br>`(short signed int)varname`<br>`(short)varname,d`               |
+|       16-bit (DW) unsigned int       |                                    `(short unsigned int)varname`                                     |
+|        16-bit (DW) int in hex        |                                 `(short int)var,x`<br>`(short)var,x`                                 |
+|        32-bit (DD) signed int        |                      `(long int)var`<br>`(long signed int)var`<br>`(long)int,d`                      |
+|       32-bit (DD) unsigned int       |                                     `(long unsigned int)varname`                                     |
+|        32-bit (DD) int in hex        |                              `(long int)varname,x`<br>`(long)varname,x`                              |
+|          32-bit (DD) float           |                                           `(float)varname`                                           |
+|        64-bit (DQ) signed int        |        `(long long int)varname`<br>`(long long signed int)varname`<br>`(long long)varname,d`         |
+|       64-bit (DQ) unsigned int       |                                  `(long long unsigned int)varname`                                   |
+|        64-bit (DQ) int in hex        |                         `(long long int)varname,x`<br>`(long long)varname,x`                         |
+|          64-bit (DQ) float           |                                          `(double)varname`                                           |
+|  10-elm array of 8-bit  signed ints  |                                        `(char[10])varname,d`                                         |
+| 10-elm array of 8-bit  unsigned ints |                       (iba ako unsigned char)<br>`(unsigned char[10])varname`                        |
+|  10-elm array of 8-bit  ints in hex  |                                        `(char[10])varname,x`                                         |
+|  10-elm array of 16-bit signed ints  |         `(short int[10])varname`<br>`(short[10])varname,d`<br>`(signed short[10])varname,d`          |
+| 10-elm array of 16-bit unsigned ints |                                  `(unsigned short int[10])varname`                                   |
+|  10-elm array of 16-bit ints in hex  |        `(short[10])varname,x`<br>`(short int[10])varname,x`<br>`(signed short[10])varname,x`         |
 
 </details>
 
