@@ -1,6 +1,6 @@
 %include "rw32-2022.inc"
 
-;       CV03 (Registre a prístup do pamäti, č. 2)
+;       CV03 (Príznaky a pamäť)
 ; Vytvorte dve polia o dĺžke 10 a preveďte následujúci výpočet:
 ; pole1[i] = pole1[i] + pole2[i]-4 .
 

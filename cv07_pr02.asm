@@ -5,7 +5,7 @@
 ; reťazec "Ahoj, světe!".
 
 section .data
-    str     DD  "Ahoj, světe!", 0
+    text    DW  "Ahoj, svete!", 0
 
 section .text
 FUNKCE:
@@ -16,7 +16,7 @@ FUNKCE:
     RET     4
 
 CMAIN:
-    MOV     EAX, str
+    MOV     EAX, text
     PUSH    EAX
     CALL    FUNKCE
     RET

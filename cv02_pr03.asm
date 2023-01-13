@@ -1,6 +1,6 @@
 %include "rw32-2022.inc"
 
-;       CV02 (Registre a prístup do pamäti)
+;       CV02 (Základy asemblera)
 ; Vypíšte pomocou `WriteUInt8` hodnoty z poľa `pole` na
 ; indexoch 1, 2 a 4, pričom na posun v poli môžete použiť
 ; iba aritmetické funkcie ADD a SUB.

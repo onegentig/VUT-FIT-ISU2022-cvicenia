@@ -1,6 +1,6 @@
 %include "rw32-2022.inc"
 
-;       CV02 (Registre a prístup do pamäte)
+;       CV02 (Základy asemblera)
 ; Vypočítajte obvod obdĺžniku, pričom dĺžky strán sú uložené
 ; v pamäti ako 8-bitové `a` a 16-bitové `b`. Výsledok
 ; uložte do pamäťového miesta `o` (16-bit).

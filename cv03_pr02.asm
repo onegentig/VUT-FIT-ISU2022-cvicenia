@@ -1,6 +1,6 @@
 %include "rw32-2022.inc"
 
-;       CV03 (Registre a prístup do pamäti, č. 2)
+;       CV03 (Príznaky a pamäť)
 ; Pomocou inštrukcií ADD a SUB vygenerujte príznaky pomocou
 ; 16-bitových registrov.
 ;   ZF (zero flag)

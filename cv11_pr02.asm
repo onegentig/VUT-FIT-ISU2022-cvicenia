@@ -1,31 +1,32 @@
 %include "rw32-2022.inc"
-CEXTERN printf
 
-;       CV11 (Opakovanie)
-; Vypočítajte `sin(x)` pomocou
-; FPU, a výsledok vypíšte pomocou
-; externého `printf()`.
+;       CV10 (FPU, č.1)
+; Pomocou FPU vypočítajte výraz:
+;    y = sqrt(a+log2(a))
+; pričom `a` je 16-bitové číslo
+; v pamäti. Výsledok vypíšte.
 
 section .data
-    x       DQ  20.0
-    f_str   DB  "%.3f", 0
+    a       DD  3.0
 
 section .text
 CMAIN:
     ENTER   0, 0
-    SUB     ESP, 12
+    SUB     ESP, 4
+    FINIT
 
-    PUSH    dword [x+4]
-    PUSH    dword [x]
-    FLD     qword [ESP]
-    FSIN
-    PUSH    __FLOAT32__(4.0)
-    FLD     dword [ESP]
-    FMULP
-    FSTP    qword [ESP]
-    PUSH    f_str
-    CALL    printf
+    PUSH    __FLOAT32__(1.0)
+    FLD     dword [ESP]     ; ST0 = 1
+    FLD     dword [a]       ; ST0 = a, ST1 = 1
+    FYL2X                   ; ST0 = log2(a)
+    FLD     dword [a]       ; ST0 = a, ST1 = log2(a)
+    FADDP                   ; ST0 = a+log2(a)
+    FSQRT                   ; ST0 = sqrt(a+log2(a))
 
-    ADD     ESP, 12
+    FSTP    dword [EBP]
+    MOV     EAX, [EBP]
+    CALL    WriteFloat
+    
+    ADD     ESP, 4
     LEAVE
     RET

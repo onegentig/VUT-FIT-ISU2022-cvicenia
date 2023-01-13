@@ -1,6 +1,6 @@
 %include "rw32-2022.inc"
 
-;       CV02 (Registre a prístup do pamäte)
+;       CV02 (Základy asemblera)
 ; Sčítajte obsah registrov AL a BL, a výslednú hodnotu
 ; uložte do pamäťového miesta so symbolickou adresou `isu`.
 

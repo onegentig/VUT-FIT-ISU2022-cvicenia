@@ -1,6 +1,6 @@
 %include "rw32-2022.inc"
 
-;       CV03 (Registre a prístup do pamäti, č. 2)
+;       CV03 (Príznaky a pamäť)
 ; Inicializujte dve polia so šiestimi hodnotami, kde prvé pole
 ; bude obsahovať 16-bitové hodnoty a druhé pole 32-bitové
 ; hodnoty. Potom nahraďte v prvom poli hodnoty s párnym

@@ -1,6 +1,6 @@
 %include "rw32-2022.inc"
 
-;       CV11 (Opakovanie)
+;       CV11 (FPU, č.2)
 ; Vypočítajte sumu `(x_n - y_n)^2` z
 ; hodnôt dvoch polí rovnakej dĺžky.
 ; Výsledok odmocnite a vypíšte.

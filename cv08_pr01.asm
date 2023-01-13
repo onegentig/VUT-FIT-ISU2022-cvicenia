@@ -1,6 +1,6 @@
 %include "rw32-2022.inc"
 
-;       CV08 (Podmienky)
+;       CV08 (Riadiace konštrukcie)
 ; Pomocou základného podmieneného vetvenia
 ; vytvorte program, ktorý načíta dva 8-bit.
 ; čísla z pamäte (ľubovoľná hodnota), a

@@ -1,7 +1,7 @@
 %include "rw32-2022.inc"
 CEXTERN malloc
 
-;       CV11 (Opakovanie)
+;       CV11 (FPU, č.2)
 ; Vytvorte funkciu na výpočet výrazu:
 ;      y = cos(4x+π) / (x-1)
 ; pomocou FPU. Pomocou externej funkcie

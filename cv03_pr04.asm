@@ -1,6 +1,6 @@
 %include "rw32-2022.inc"
 
-;       CV03 (Registre a prístup do pamäti, č. 2)
+;       CV03 (Príznaky a pamäť)
 ; Vytvorte polia 8-bitových čísel `a`, `b`, `c` a `d` s
 ; ľubovoľným počtom prvkov. Následne vytvorte pole `p_array`
 ; s ukazovateľmi na tieto polia, a iba z pomocou tohoto
