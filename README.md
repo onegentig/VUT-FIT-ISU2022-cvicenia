@@ -4,13 +4,15 @@
 
 ⚠️ **Zverejnené pre archívne účely — nekopírujte, nula by Vás mrzela. Za nič také nenesiem žiadnu zodpovednosť!** Všetky odovzdané projekty prechádzajú kontrolou plagiátorstva, pri ktorej sa porovnávajú aj s dávnejšie odovzdanými riešeniami.
 
-Toto je archív mojích kódikov z ISU cvičení, ktoré som znovu-objavil na starom VPS (aspoň čo sa zachovalo), plus samouka na testy (cv06, cv10, cv13). Všetky súbory sú závislé na podpornej knižnici `rw32-2022.inc` ([MOODLE.vut.cz](https://moodle.vut.cz/pluginfile.php/370054/mod_folder/content/0/RW32/rw32-2022.inc?forcedownload=1), [archive.org](https://archive.org/download/rw32-2022/rw32-2022.inc)).
+Toto je archív mojích kódikov z ISU cvičení, ktoré som znovu-objavil na starom VPS (aspoň čo sa zachovalo), plus samouka na testy. Všetky súbory sú závislé na podpornej knižnici `rw32-2022.inc` ([MOODLE.vut.cz](https://moodle.vut.cz/pluginfile.php/370054/mod_folder/content/0/RW32/rw32-2022.inc?forcedownload=1), [archive.org](https://archive.org/download/rw32-2022/rw32-2022.inc)).
 
 ## Spojaznenie
 
-*Počas 1BIT som dosť distro-hoppoval, a na všetkom som chcel mať funkčný nasm so všetkými možnými fancy rozšíreniami do VSCode. Síce neviem či to niekomu na niečo bude (who knows?), ale možem sa podeliť o to aspoň podeliť, nech toto repo je o trošku menej useless.*
+*V 1BIT som dosť distro-hoppoval, a na všetkom som chcel mať funkčný nasm so všetkými možnými fancy rozšíreniami do VSCode. Síce neviem či to niekomu na niečo bude (who knows?), ale možem podeliť o pár info, nech toto repo je o trošku menej useless.*
 
 ### Knižnice
+
+Na programovanie v x86 Assembly (32-bit) je potrebné mať nainštalovaný asembler [NASM](https://nasm.us/) spolu s C-čkovými utilitkami a linkerom. Pre Linux je najjednoduššie použiť GNU Toolchain - [GCC](https://en.wikipedia.org/wiki/GNU_Compiler_Collection), [GDB](https://en.wikipedia.org/wiki/GNU_Debugger) + C knižnice - čo sa všetko dá nainštalovať ako package group. K tomu je treba doinštalovať 32-bitové knižnice.
 
 #### Debian-based distros (Ubuntu, Debian, Linux Mint,…)
 
@@ -21,7 +23,7 @@ apt -y install gcc-multilib # 32-bit libraries
 apt -y install nasm
 ```
 
-#### Red Hat-based distros (Fedora, CentOS, RHEL,…)
+#### Red Hat-based distros (Fedora, RHEL,…)
 
 ```sh
 dnf -y upgrade
@@ -41,6 +43,11 @@ pacman -S nasm
 
 ### VSCode rozšírenia
 
+<div align="center">
+  <img alt="syntax highlight screenshot" src="https://user-images.githubusercontent.com/84882649/211170292-5e8e6c17-008d-4262-922e-e93b8937d0a2.png" />
+  <sup><i>Ukážka <a href="https://marketplace.visualstudio.com/items?itemName=13xforever.language-x86-64-assembly" target="_blank">x86 syntax highlight</a> a <a href="https://marketplace.visualstudio.com/items?itemName=ISUASMRegisters.isu-asm-extension" target="_blank">ISU ASM Registers Extension</a> (<a href="https://marketplace.visualstudio.com/items?itemName=sldobri.bunker" target="_blank">Dobri Next -A01- Dark</a> + <a href="https://github.com/be5invis/Iosevka" target="_blank">Iosevka SS07</a>)</i></sup><br />
+</div>
+
 Assembly súbor spúštate pomocou [NASMu](https://cs.wikipedia.org/wiki/Netwide_Assembler) takto:
 
 ```sh
@@ -51,30 +58,22 @@ gcc -fverbose-asm -m32 -o ./build/test build/test.o
 
 Pokiaľ sa Vám nechce neustále písať tieto príkazy do terminálu, proces si môžete automatizovať rozšírením [GDB Debug](https://marketplace.visualstudio.com/items?itemName=DamianKoper.gdb-debug)<sup>[[REPO]](https://github.com/damiankoper/vscode-gdb-debug)</sup> a súbormi [launch.json](.vscode/launch.json) a [tasks.json](.vscode/tasks.json) v priečinku `.vscode`.
 
-```sh
-ext install DamianKoper.gdb-debug
-```
-
-![screenshot](https://user-images.githubusercontent.com/84882649/211170292-5e8e6c17-008d-4262-922e-e93b8937d0a2.png)
-![screenshot](https://user-images.githubusercontent.com/84882649/211170292-5e8e6c17-008d-4262-922e-e93b8937d0a2.png)
-
-Pre debugging použite klávesu `F5`, a `CTRL + F5` na spustenie bez debugu. Na plnohodnotný debug musíte do kódu pridať *breakpointy* (tie červené bodky), kde program sa pozastaví, a môžete v ňom krokovať pomocou tlačidiel v hornom menu. Je dosť možné, že Vám pridávať breakpointy nepôjde, ale všetko sa dá obísť - vo VSCode nastaveniach (File > Preferences > Settings) nájdite nastavenie *"Debug: Allow Breakpoints Everywhere"* a povolte ho.
+Pre debugging použite klávesu <kbd>F5</kbd>, a <kbd>CTRL + F5</kbd> na spustenie bez debugu. Na debugging treba do kódu pridať *breakpointy* (tie červené bodky), kde program sa pozastaví, a môžete v ňom krokovať pomocou tlačidiel v hornom menu. Pokiaľ Vám nejde pridávať breakpointy, treba ich povoliť — vo VSCode nastaveniach (File > Preferences > Settings) nájdite nastavenie *"Debug: Allow Breakpoints Everywhere"* a povolte ho.
 
 #### Ďalšie odporúčané rozšírenia
 
-* [x86 and x86_64 Assembly](https://marketplace.visualstudio.com/items?itemName=13xforever.language-x86-64-assembly)<sup>[[REPO]](https://marketplace.visualstudio.com/items?itemName=13xforever.language-x86-64-assembly)</sup> — syntax highlighting
+* [x86 and x86_64 Assembly](https://marketplace.visualstudio.com/items?itemName=13xforever.language-x86-64-assembly)<sup>[[REPO]](https://github.com/13xforever/x86_64-assembly-vscode)</sup> — syntax highlighting
 * [ISU ASM Register Extension](https://marketplace.visualstudio.com/items?itemName=ISUASMRegisters.isu-asm-extension)<sup>[[REPO]](https://github.com/Reusek/vscode-register-extension)</sup> — lepšie zobrazenie registrov počas debuggingu
 * [x86 Instruction Reference](https://marketplace.visualstudio.com/items?itemName=whiteout2.x86)<sup>[[REPO]](https://github.com/13xforever/x86_64-assembly-vscode)</sup> — offline dokumentácia x86 inštrukcií
-
-```sh
-ext install 13xforever.language-x86-64-assembly
-ext install ISUASMRegisters.isu-asm-extension
-ext install whiteout2.x86
-```
 
 Všetky tieto rozšírenia sú povolené na cvičeniach aj na testoch (pozor: počas môjho štúdia, pravidlá sa mohli zmeniť!).
 
 ## Debugging
+
+<div align="center">
+  <img alt="watch panel screenshot" src="https://user-images.githubusercontent.com/84882649/212474370-7046cb34-0fbf-4404-9521-2eab59d7b6d1.png" />
+  <sup><i>Ukážka debuggingu s Watch panelom (<a href="https://marketplace.visualstudio.com/items?itemName=HasiburR.dark-hacker-theme-by-hasibur-r" target="_blank">Hacker X - Underdark Theme</a> + <a href="https://github.com/be5invis/Iosevka" target="_blank">Iosevka SS07</a>)</i></sup><br />
+</div>
 
 ### Watch panel
 
@@ -88,7 +87,7 @@ Na ľavej strane rozhrania v tabe *Run & Debug* máte panel *Watch*, pomocou kto
   <kbd>*ADDR-ADDR</kbd>: Zobrazí hodnoty miest v pamäti v rozsahu ADDR-ADDR
 </pre>
 
-Takže napríklad hodnotu EAX zobrazíte výrazom `$eax`, alebo BL výrazom `$bl` (nie je case-sensitive).
+Takže napríklad hodnotu EAX zobrazíte výrazom `$eax`, alebo BL výrazom `$bl`.
 
 Pretože assembly neuchováva typ "premenných" (a po kompilácií ani veľkosť), je nutné použiť cast na pretypovanie.
 
@@ -104,7 +103,7 @@ Pretože assembly neuchováva typ "premenných" (a po kompilácií ani veľkosť
 * `long` — 32-bitov (dd)
 * `long long` — 64-bitov (dq)
 
-Veľkosti a typy môžu byť osobitne, napr. `(int)(short)varname`, alebo kombinovane (16-bit+), napr. `(short int)varname` - k tomu ešte je možné špecifikovať znamienkovosť, napr. `(unsigned short int)varname`.
+Veľkosti a typy môžu byť osobitne, napr. `(int)(short)varname`, alebo kombinovane, napr. `(short int)varname` - k tomu ešte je možné špecifikovať znamienkovosť, napr. `(unsigned short int)varname` (vyberte si, čo Vám vyhovuje najviac - jedine pri 8-bit int nemáte inú možnosť len použiť `(int)(char)varname`, AFAIK).
 
 A ako posledné máte niekoľko možností formátu výpisu (píše sa za výrazom, oddelený čiarkou):
 
@@ -126,7 +125,7 @@ Tu máte zopár možností na výpis. Vyberte si, čo Vám príde najintuitívne
 |          **Type of value**           |                                     **Watch expression methods**                                     |
 | :----------------------------------: | :--------------------------------------------------------------------------------------------------: |
 |        String (any sized ptr)        |                                             `&varname,s`                                             |
-|   Integer at the top of the stack    |                                            `*(int*)$esp`                                             |
+|   Integer at the top of the stack    |                                             `*(int)$esp`                                             |
 |        8-bit  (DB) signed int        | `(char)varname,d`<br>`(signed char)varname,d`<br>`(int)(char)varname`<br>`(signed int)(char)varname` |
 |       8-bit  (DB) unsigned int       |                    `(unsigned int)(char)varname`<br>`(int)(unsigned char)varname`                    |
 |        8-bit  (DB) int in hex        |                             `(char)varname,x`<br>`(int)(char)varname,x`                              |
