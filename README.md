@@ -71,8 +71,8 @@ Všetky tieto rozšírenia sú povolené na cvičeniach aj na testoch (pozor: po
 ## Debugging
 
 <div align="center">
-  <img alt="watch panel screenshot" src="https://user-images.githubusercontent.com/84882649/212474370-7046cb34-0fbf-4404-9521-2eab59d7b6d1.png" />
-  <sup><i>Ukážka debuggingu s Watch panelom (<a href="https://marketplace.visualstudio.com/items?itemName=HasiburR.dark-hacker-theme-by-hasibur-r" target="_blank">Hacker X - Underdark Theme</a> + <a href="https://github.com/be5invis/Iosevka" target="_blank">Iosevka SS07</a>)</i></sup><br />
+  <img alt="watch panel screenshot" src="https://user-images.githubusercontent.com/84882649/212491359-c65fad04-5654-4064-b0d2-988046757ae7.png" />
+  <sup><i>Ukážka debuggingu s Watch panelom (<a href="https://marketplace.visualstudio.com/items?itemName=HasiburR.dark-hacker-theme-by-hasibur-r" target="_blank">Hacker X - Underdark Hacker Theme</a> + <a href="https://github.com/ajaybhatia/Operator-Mono" target="_blank">Operator Mono</a>)</i></sup><br />
 </div>
 
 ### Watch panel
