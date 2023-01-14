@@ -4,17 +4,15 @@
 
 ⚠️ **Zverejnené pre archívne účely — nekopírujte, nula by Vás mrzela. Za nič také nenesiem žiadnu zodpovednosť!** Všetky odovzdané projekty prechádzajú kontrolou plagiátorstva, pri ktorej sa porovnávajú aj s dávnejšie odovzdanými riešeniami.
 
-Toto je archív mojích kódikov z ISU cvičení, ktoré som znovu-objavil na starom VPS (aspoň čo sa zachovalo), plus samouka na testy. Všetky súbory sú závislé na podpornej knižnici `rw32-2022.inc` ([MOODLE.vut.cz](https://moodle.vut.cz/pluginfile.php/370054/mod_folder/content/0/RW32/rw32-2022.inc?forcedownload=1), [archive.org](https://archive.org/download/rw32-2022/rw32-2022.inc)).
+Toto je archív mojích kódikov z ISU cvičení, ktoré som znovu–objavil na starom VPS (aspoň čo sa zachovalo), plus samouka na testy. Všetky súbory sú závislé na podpornej knižnici `rw32-2022.inc` ([MOODLE.vut.cz](https://moodle.vut.cz/pluginfile.php/370054/mod_folder/content/0/RW32/rw32-2022.inc?forcedownload=1), [archive.org](https://archive.org/download/rw32-2022/rw32-2022.inc)).
 
-## Spojaznenie
+## Spojaznenie<a name="setup"></a>
 
-*V 1BIT som dosť distro-hoppoval, a na všetkom som chcel mať funkčný nasm so všetkými možnými fancy rozšíreniami do VSCode. Síce neviem či to niekomu na niečo bude (who knows?), ale možem podeliť o pár info, nech toto repo je o trošku menej useless.*
+### Knižnice<a name="lib"></a>
 
-### Knižnice
+Na programovanie v x86 Assembly je potrebné mať nainštalovaný asembler [NASM](https://nasm.us/) spolu s C-čkovými utilitkami a linkerom. Pre Linux je najjednoduššie použiť GNU Toolchain — [GCC](https://en.wikipedia.org/wiki/GNU_Compiler_Collection), [GDB](https://en.wikipedia.org/wiki/GNU_Debugger) + C knižnice — čo sa všetko dá nainštalovať ako package group. K tomu je treba doinštalovať 32–bitové knižnice.
 
-Na programovanie v x86 Assembly (32-bit) je potrebné mať nainštalovaný asembler [NASM](https://nasm.us/) spolu s C-čkovými utilitkami a linkerom. Pre Linux je najjednoduššie použiť GNU Toolchain - [GCC](https://en.wikipedia.org/wiki/GNU_Compiler_Collection), [GDB](https://en.wikipedia.org/wiki/GNU_Debugger) + C knižnice - čo sa všetko dá nainštalovať ako package group. K tomu je treba doinštalovať 32-bitové knižnice.
-
-#### Debian-based distros (Ubuntu, Debian, Linux Mint,…)
+#### Debian–based distros (Ubuntu, Debian, Linux Mint,…)<a name="lib-debian"></a>
 
 ```sh
 apt -y update
@@ -23,7 +21,7 @@ apt -y install gcc-multilib # 32-bit libraries
 apt -y install nasm
 ```
 
-#### Red Hat-based distros (Fedora, RHEL,…)
+#### Red Hat–based distros (Fedora, RHEL,…)<a name="lib-fedora"></a>
 
 ```sh
 dnf -y upgrade
@@ -32,7 +30,7 @@ dnf -y install glibc-devel.i686 # 32-bit libraries
 dnf -y install nasm
 ```
 
-#### Arch-based distros (Arch Linux, EndeavourOS, Manjaro,…)
+#### Arch–based distros (Arch Linux, EndeavourOS, Manjaro,…)<a name="lib-arch"></a>
 
 ```sh
 pacman -Syu
@@ -41,7 +39,7 @@ pacman -S lib32-gcc-libs # 32-bit libraries
 pacman -S nasm
 ```
 
-### VSCode rozšírenia
+### VSCode rozšírenia<a name="extensions"></a>
 
 <div align="center">
   <img alt="syntax highlight screenshot" src="https://user-images.githubusercontent.com/84882649/211170292-5e8e6c17-008d-4262-922e-e93b8937d0a2.png" />
@@ -56,9 +54,9 @@ gcc -fverbose-asm -m32 -o ./build/test build/test.o
 ./build/test
 ```
 
-Pokiaľ sa Vám nechce neustále písať tieto príkazy do terminálu, proces si môžete automatizovať rozšírením [GDB Debug](https://marketplace.visualstudio.com/items?itemName=DamianKoper.gdb-debug)<sup>[[REPO]](https://github.com/damiankoper/vscode-gdb-debug)</sup> a súbormi [launch.json](.vscode/launch.json) a [tasks.json](.vscode/tasks.json) v priečinku `.vscode`.
+Proces si môžete automatizovať rozšírením [GDB Debug](https://marketplace.visualstudio.com/items?itemName=DamianKoper.gdb-debug)<sup>[[REPO]](https://github.com/damiankoper/vscode-gdb-debug)</sup> a súbormi [launch.json](.vscode/launch.json) a [tasks.json](.vscode/tasks.json) v priečinku `.vscode`.
 
-Pre debugging použite klávesu <kbd>F5</kbd>, a <kbd>CTRL + F5</kbd> na spustenie bez debugu. Na debugging treba do kódu pridať *breakpointy* (tie červené bodky), kde program sa pozastaví, a môžete v ňom krokovať pomocou tlačidiel v hornom menu. Pokiaľ Vám nejde pridávať breakpointy, treba ich povoliť — vo VSCode nastaveniach (File > Preferences > Settings) nájdite nastavenie *"Debug: Allow Breakpoints Everywhere"* a povolte ho.
+Pre debugging použite klávesu <kbd>F5</kbd>, alebo spustite súbor klávesami <kbd>CTRL + F5</kbd> bez debugu. Na debugging treba do kódu pridať *breakpointy* (tie červené bodky), kde program sa pozastaví, a môžete v ňom krokovať (pomocou tlačidiel v hornom menu) a pri tom sledovať registre, premenné, a podobne. Pokiaľ Vám nejde pridávať breakpointy, treba ich povoliť vo VSCode nastaveniach (File > Preferences > Settings > *Debug: Allow Breakpoints Everywhere*).
 
 #### Ďalšie odporúčané rozšírenia
 
@@ -68,14 +66,14 @@ Pre debugging použite klávesu <kbd>F5</kbd>, a <kbd>CTRL + F5</kbd> na spusten
 
 Všetky tieto rozšírenia sú povolené na cvičeniach aj na testoch (pozor: počas môjho štúdia, pravidlá sa mohli zmeniť!).
 
-## Debugging
+## Debugging<a name="debug"></a>
 
 <div align="center">
   <img alt="watch panel screenshot" src="https://user-images.githubusercontent.com/84882649/212491359-c65fad04-5654-4064-b0d2-988046757ae7.png" />
   <sup><i>Ukážka debuggingu s Watch panelom (<a href="https://marketplace.visualstudio.com/items?itemName=HasiburR.dark-hacker-theme-by-hasibur-r" target="_blank">Hacker X - Underdark Hacker Theme</a> + <a href="https://github.com/ajaybhatia/Operator-Mono" target="_blank">Operator Mono</a>)</i></sup><br />
 </div>
 
-### Watch panel
+### Watch panel<a name="watch"></a>
 
 Na ľavej strane rozhrania v tabe *Run & Debug* máte panel *Watch*, pomocou ktorého môžete zobrazovať aktuálne hodnoty registrov či premenných (= miest v pamäti).
 
@@ -91,21 +89,21 @@ Takže napríklad hodnotu EAX zobrazíte výrazom `$eax`, alebo BL výrazom `$bl
 
 Pretože assembly neuchováva typ "premenných" (a po kompilácií ani veľkosť), je nutné použiť cast na pretypovanie.
 
-* `char` — znak, 8-bitov
-* `int` — celé číslo, auto. veľkosť a znamienkovosť
+* `char` — znak
+* `int` — celé číslo
 * `string` — reťazec znakov
 * `float` — číslo s pohyblivou rádovou čiarkou
 
-`char` je nositeľ typu aj veľkosti, pri `int` je však veľkosť automaticky určená, čo nemusí byť vždy správne (hlavne pri poliach).
+`char` je nositeľ typu aj veľkosti (8–bit), no `int` typu je veľkosť automaticky určená, čo nemusí byť vždy správne (hlavne pri poliach).
 
-* `char` — 8-bitov (db)
-* `short` — 16-bitov (dw)
-* `long` — 32-bitov (dd)
-* `long long` — 64-bitov (dq)
+* `char` — 8–bitov (DB)
+* `short` — 16–bitov (DW)
+* `long` — 32–bitov (DD)
+* `long long` — 64–bitov (DQ)
 
-Veľkosti a typy môžu byť osobitne, napr. `(int)(short)varname`, alebo kombinovane, napr. `(short int)varname` - k tomu ešte je možné špecifikovať znamienkovosť, napr. `(unsigned short int)varname` (vyberte si, čo Vám vyhovuje najviac - jedine pri 8-bit int nemáte inú možnosť len použiť `(int)(char)varname`, AFAIK).
+Veľkosti a typy môžu byť osobitne, napr. `(int)(short)varname`, alebo kombinovane, napr. `(short int)varname` - k tomu ešte je možné špecifikovať znamienkovosť, napr. `(unsigned short int)varname` (vyberte si, čo Vám vyhovuje najviac — jedine pri 8-bit int treba presne použiť `(int)(char)varname`).
 
-A ako posledné máte niekoľko možností formátu výpisu (píše sa za výrazom, oddelený čiarkou):
+A ako posledné máte niekoľko možností formátu výpisu (píše sa za výrazom, oddelené čiarkou):
 
 * `d` — celé číslo so znamienkom
 * ~~`u` — celé číslo bez znamienka~~
@@ -115,11 +113,9 @@ A ako posledné máte niekoľko možností formátu výpisu (píše sa za výraz
 * `c` — znak
 * `f` — číslo s pohyblivou rádovou čiarkou
 
-*Všetky možnosti nájdete v [dokumentácií GDB](https://getdocs.org/Gdb/Output-Formats#Output-Formats).*
+Tu máte zopár možností na výpis (aj s poliami). Vyberte si, čo Vám príde najintuitívnejšie: <sup><a href="https://github.com/nickonegen/VUT-FIT-ISU2022-cvicenia/README.md#watch-table">(permalink)</a></sup>
 
-Tu máte zopár možností na výpis. Vyberte si, čo Vám príde najintuitívnejšie:
-
-<details>
+<details><a name="watch-table"></a>
 <summary><b>Tabuľka výpisových výrazov</b></summary>
 
 |          **Type of value**           |                                     **Watch expression methods**                                     |
@@ -150,7 +146,7 @@ Tu máte zopár možností na výpis. Vyberte si, čo Vám príde najintuitívne
 
 </details>
 
-### Príkazy gdb
+### Príkazy gdb<a name="gdb-console"></a>
 
 **Debug console** je priamy prístup do debuggeru gcc, čo je fajn pomôcka, aj keď menej *user-friendly*. V tejto konzole môžete písať rovnaké výrazy ako do Watch panelu, alebo vykonávať príkazy pomocou `-exec`.
 
@@ -170,6 +166,6 @@ Tu máte zopár možností na výpis. Vyberte si, čo Vám príde najintuitívne
 
 Čo z toho je užitočné je už vec názoru, je to skôr niečo pre *terminal master race* hackermanov, inak za zaobídete aj bez tohoto. Asi jediný príkaz, čo som osobne používal, je `-exec info float`.
 
-## Snippety
+## Snippety<a name="snippets"></a>
 
-Dávam sem aj moje 💩 snippety v súbore [isu.code-snippets](.vscode/isu.code-snippets). Je to len čiastočný copy-paste z prezentácií, ktorý som druhú polovicu semestra skoro vôbec neaktualizoval - skôr to prikladám ako šablónu, keby ste sa s tým chceli pohrať a [spraviť si vlastné](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets). U nás boli vlastné snippety povolené aj na písomkách (pozor: nemusí platiť aj tento rok!).
+Dávam sem aj moje 💩 snippety v súbore [isu.code-snippets](.vscode/isu.code-snippets). Je to len čiastočný copy-paste z prezentácií, ktorý som druhú polovicu semestra skoro vôbec neaktualizoval — skôr to prikladám ako šablónu, keby ste sa s tým chceli pohrať a [spraviť si vlastné](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets). U nás boli vlastné snippety povolené aj na písomkách (pozor: nemusí platiť aj tento rok!).
