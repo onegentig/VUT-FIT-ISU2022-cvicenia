@@ -113,9 +113,9 @@ A ako posledné máte niekoľko možností formátu výpisu (píše sa za výraz
 * `c` — znak
 * `f` — číslo s pohyblivou rádovou čiarkou
 
-Tu máte zopár možností na výpis (aj s poliami). Vyberte si, čo Vám príde najintuitívnejšie: <sup><a href="https://github.com/nickonegen/VUT-FIT-ISU2022-cvicenia/README.md#watch-table">(permalink)</a></sup>
+Tu máte zopár možností na výpis (aj s poliami). Vyberte si, čo Vám príde najintuitívnejšie:
 
-<details><a name="watch-table"></a>
+<details>
 <summary><b>Tabuľka výpisových výrazov</b></summary>
 
 |          **Type of value**           |                                     **Watch expression methods**                                     |
